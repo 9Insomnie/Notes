@@ -1,4 +1,10 @@
-# Nmap 7.94SVN scan initiated Sat Nov 15 14:03:28 2025 as: nmap -sC -sV -vv -oA /home/n0irx/HTB/Eighteen 10.129.156.245
+# RECON
+## Creds
+Machine infomation:
+As is common in real life Windows penetration tests, you will start the Eighteen box with credentials for the following account: kevin / iNa2we6haRj2gaw!
+
+## Port Scan
+Nmap 7.94SVN scan initiated Sat Nov 15 14:03:28 2025 as: nmap -sC -sV -vv -oA /home/n0irx/HTB/Eighteen 10.129.156.245
 Nmap scan report for 10.129.156.245
 Host is up, received echo-reply ttl 127 (0.32s latency).
 Scanned at 2025-11-15 14:03:28 EST for 57s
@@ -53,4 +59,3 @@ Host script results:
 
 Read data files from: /usr/bin/../share/nmap
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Sat Nov 15 14:04:25 2025 -- 1 IP address (1 host up) scanned in 57.28 seconds
