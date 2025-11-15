@@ -60,3 +60,5 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 Host script results:
 |_clock-skew: 7h00m03s
 ```
+- **Domain**: `eighteen.htb`
+- 
