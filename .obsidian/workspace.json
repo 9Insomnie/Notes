@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Eighteen.md",
+                "file": "HTB/Eighteen.md",
                 "mode": "source",
                 "source": false
               },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Eighteen.md",
+                "file": "HTB/Eighteen.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Eighteen.md",
+                "file": "HTB/Eighteen.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -156,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Eighteen.md",
+                "file": "HTB/Eighteen.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -180,11 +180,13 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "bases:创建新数据库": false
+      "bases:创建新数据库": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "074decce2b1eb50e",
+  "active": "c90c2b7a1e696c7b",
   "lastOpenFiles": [
-    "Eighteen.md"
+    "HTB",
+    "HTB/Eighteen.md"
   ]
 }
