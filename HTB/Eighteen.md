@@ -262,7 +262,7 @@ Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb -DomainController "
 - 所以他们发明了 dMSA，并加入了迁移功能：
 
 	- 用户创建一个 dMSA，该 dMSA“继承”了一个现有的传统服务账户。
-	
+
 	- 在后台，他们链接这两个账户，KDC 将 dMSA 视为继承者身份。
 
 在迁移过程中，从机械角度来看：
@@ -270,7 +270,7 @@ Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb -DomainController "
 - dMSA 对象获取属性，如：
 
 	- `msDS-ManagedAccountPrecededByLink` → 指向原始用户（前任）
-	
+
 	- `msDS-DelegatedMSAState` → 迁移状态（准备中、已完成等）
 
 当设置正确时，DC 基本上会说：
@@ -286,14 +286,14 @@ Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb -DomainController "
 - 如果攻击者可以：
 
 	- 创建或控制一个 dMSA 对象，并且
-	
+
 	- 设置其部分属性（特别是“前驱”链接）
 
 - 他们可以欺骗 KDC，使其将那个 dMSA 视为任何目标账户（域管理员、域控制器等）的后继者。
 - 结果：
 
 	- dMSA 有效继承了目标的权限，
-	
+
 	- 我们就能获取目标账户的 Kerberos 密钥/PAC。
 
 这意味着，只需极小的权限，我们就能提升到域中的任何主体。
