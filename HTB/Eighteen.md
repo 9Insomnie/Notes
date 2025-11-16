@@ -89,11 +89,11 @@ enum_impersonate
 ![[Pasted image 20251116205249.png]]
 **关键发现**：Kevin 可以假冒 `appdev` 登录!
 #### 模拟 appdev 并访问数据库
-```
--- Impersonate appdev
+```SQL
+-- 冒充 appdev
 EXECUTE AS LOGIN = 'appdev';
 
--- Verify
+-- 核实
 SELECT SYSTEM_USER, USER_NAME();
 
 -- Access financial_planner database
