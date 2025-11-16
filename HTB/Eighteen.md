@@ -388,7 +388,7 @@ export KRB5CCNAME=adam.scott.ccache
 
 ### 利用程序
 
-Akamai 博客提供了详细的利用步骤。我们参考官方的 writeup https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory ,并使用 GitHub 上的这个 PoC。
+Akamai 博客提供了详细的利用步骤。我们参考官方的 [writeup]( https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory),并使用 GitHub 上的这个 PoC。
 
 #### 查找可写入的 OU
 
