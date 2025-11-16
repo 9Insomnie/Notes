@@ -86,7 +86,9 @@ SELECT name FROM master.dbo.sysdatabases;
 ![[Pasted image 20251116204800.png]]
 #### 发现模拟权限
 
-使用 enum_impersonate
-
+```SQL
+enum_impersonate
+```
+![[Pasted image 20251116205249.png]]
 **关键发现**：Kevin 可以假冒 `appdev` 登录!
 #### 模拟 appdev 并访问数据库
