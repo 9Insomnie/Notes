@@ -63,3 +63,7 @@ Host script results:
 |_clock-skew: 7h00m03s
 ```
 - **域名**: `eighteen.htb`
+### MSSQL 连接
+```
+impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
+```
