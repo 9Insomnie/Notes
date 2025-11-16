@@ -5,7 +5,7 @@
 
 	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：kevin/iNa2we6haRj2gaw!
 
-## 端口扫描
+#### 端口扫描
 
 ```
 $ nmap -sC -sV -vv -oA 10.129.156.245
@@ -66,9 +66,20 @@ Host script results:
 
 ## 初始访问
 
-#### MSSQL 枚举
+### MSSQL 枚举
 #### 尝试 1：SQL 身份验证（访客访问）
-```
+```BASH
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
-#### 结果：以 `guest` 身份连接，权限有限。
+![[Pasted image 20251116204201.png]]
+##### 结果：以 `guest` 身份连接，权限有限。
+
+#### 枚举登录
+
+```SQL
+-- 检查当前用户
+SELECT SYSTEM_USER, USER_NAME();
+
+-- 列出数据库
+SELECT name FROM master.dbo.sysdatabases;
+```
