@@ -327,5 +327,18 @@ export KRB5_CONFIG=krb5.conf
 
 **错误应对措施： `KRB_AP_ERR_SKEW`**
 
-Kerberos 不容忍时间漂移。如果由于时间偏差导致身份验证失败，可以使用 faketime 方法重新校准时间或者部署 shell 包装器（ft.sh）
+	Kerberos 不容忍时间漂移。如果由于时间偏差导致身份验证失败，可以使用 faketime 方法重新校准时间或者部署 shell 包装器（ft.sh）
+
+使用 Impacket 请求 TGT 进行测试：
+
+```bash
+# use getTGT.py to create a TGT
+./ft.sh 240.0.0.1 \
+getTGT.py eighteen.htb/'adam.scott:iloveyou1' -dc-ip 240.0.0.1
+
+# use the ticket
+export KRB5CCNAME=adam.scott.ccache
+```
+
+### 利用程序
 
