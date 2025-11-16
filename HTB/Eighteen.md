@@ -66,7 +66,9 @@ Host script results:
 
 ## 初始访问
 
-### MSSQL 连接
+#### MSSQL 枚举
+#### 尝试 1：SQL 身份验证（访客访问）
 ```
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
+#### 结果：以 `guest` 身份连接，权限有限。
