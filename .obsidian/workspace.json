@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "Eighteen"
             }
+          },
+          {
+            "id": "6a1ad0b1e9078ec3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "未命名.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "未命名"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -184,11 +199,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "46df58bbe0b53ac3",
+  "active": "c90c2b7a1e696c7b",
   "lastOpenFiles": [
+    "HTB/Eighteen.md",
+    "未命名.md",
     "备忘录/ft.sh.md",
     "备忘录/账号.md",
-    "HTB/Eighteen.md",
     "Pasted image 20251116204201.png",
     "Pasted image 20251116204800.png",
     "Pasted image 20251116210210.png",
