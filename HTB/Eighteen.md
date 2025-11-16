@@ -137,3 +137,6 @@ target_hash = "<REDACTED_HASH>"
 
 **破解密码**：iloveyou1
 
+### 密码喷洒
+
+但即使有管理员权限，这个 Web 应用也很简陋——没有暴露什么有趣的内容。
