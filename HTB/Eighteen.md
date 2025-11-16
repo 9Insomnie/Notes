@@ -86,6 +86,7 @@ SELECT name FROM master.dbo.sysdatabases;
 ```SQL
 enum_impersonate
 ```
+
 ![[Pasted image 20251116205249.png]]
 **关键发现**：Kevin 可以假冒 `appdev` 登录!
 #### 模拟 appdev 并访问数据库
@@ -103,3 +104,12 @@ USE financial_planner;
 -- 列出表格
 SELECT name FROM sys.tables;
 ```
+#### 找到的表格：
+
+![[Pasted image 20251116205908.png]]
+### 提取用户凭证
+
+```SQL
+SELECT * FROM users;
+```
+ 
