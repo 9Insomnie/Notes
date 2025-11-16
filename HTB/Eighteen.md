@@ -63,7 +63,6 @@ Host script results:
 |_clock-skew: 7h00m03s
 ```
 - **域名**: `eighteen.htb`
-
 ## 初始访问
 
 ### MSSQL 枚举
@@ -72,8 +71,7 @@ Host script results:
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
 ![[Pasted image 20251116204201.png]]
-##### 结果：以 `guest` 身份连接，权限有限。
-
+**结果**：以 `guest` 身份连接，权限有限。
 #### 枚举登录
 
 ```SQL
