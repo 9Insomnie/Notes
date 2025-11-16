@@ -324,3 +324,8 @@ nxc smb 240.0.0.1 -u adam.scott -p iloveyou1 --generate-krb5-file ./krb5.conf
 # export config
 export KRB5_CONFIG=krb5.conf
 ```
+
+**错误应对措施： `KRB_AP_ERR_SKEW`**
+
+Kerberos 不容忍时间漂移。如果由于时间偏差导致身份验证失败，可以使用 faketime 方法重新校准时间或者部署 shell 包装器（ft.sh）
+
