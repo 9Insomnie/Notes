@@ -180,10 +180,10 @@ Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb \
 
 ### 0x31 背景速读
 
-| 缩写 | 含义 |
-|------|------|
-| MSA  | 单机托管服务账户 |
-| gMSA | 组托管服务账户 |
+| 缩写   | 含义                            |
+| ---- | ----------------------------- |
+| MSA  | 单机托管服务账户                      |
+| gMSA | 组托管服务账户                       |
 | dMSA | **委派托管服务账户**（Server 2025 新功能） |
 
 **攻击核心**  
@@ -220,10 +220,10 @@ Get-DomainOU | %{
 
 **结果**
 
-| OU               | 权限摘要 |
-|------------------|----------|
-| OU=Staff         | CreateChild + GenericAll + WriteDacl + WriteOwner |
-| OU=Domain Controllers | CreateChild + GenericAll |
+| OU                    | 权限摘要                                              |
+| --------------------- | ------------------------------------------------- |
+| OU=Staff              | CreateChild + GenericAll + WriteDacl + WriteOwner |
+| OU=Domain Controllers | CreateChild + GenericAll                          |
 
 → 满足利用条件。
 
@@ -243,7 +243,7 @@ export KRB5CCNAME=adam.scott.ccache
 export KRB5_CONFIG=krb5.conf
 ```
 
-> 时间漂移用 `faketime` 修正，略。
+> 时间漂移用 `faketime` 修正。
 
 ---
 
