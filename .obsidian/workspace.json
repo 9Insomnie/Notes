@@ -8,35 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "82081a0b6ac75e50",
+            "id": "ba2238477043cca7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Outbound.md",
+                "file": "渗透测试/免杀/DLL注入.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Outbound"
-            }
-          },
-          {
-            "id": "4e93addeedcd477e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "HTB/Voleur.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Voleur"
+              "title": "DLL注入"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -201,9 +186,10 @@
   },
   "active": "c90c2b7a1e696c7b",
   "lastOpenFiles": [
+    "HTB/Voleur.md",
+    "渗透测试/免杀/DLL注入.md",
     "渗透测试/免杀",
     "HTB/Outbound.md",
-    "HTB/Voleur.md",
     "渗透测试",
     "HTB/Eighteen.md",
     "工作/标书/技术部分.md",
