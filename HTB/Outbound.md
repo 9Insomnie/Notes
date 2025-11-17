@@ -270,28 +270,28 @@ $config['smtp_server'] = 'localhost';
 
 ```rust
 fn replay(
-    logger: slog::Logger,	// 初始化日志器实例
+    logger: slog::Logger,	// initialze logger instance
     errs: Receiver<Error>,
-    time: String,			// 用户可控的 --time 参数
+    time: String,			// user-controlled --time argument
     below_config: &BelowConfig,
     host: Option<String>,
     port: Option<u16>,
     days_adjuster: Option<String>,
     snapshot: Option<String>,
 ) -> Result<()> {
-    // 将用户提供的 --time 解析为时间戳（此操作可能失败）
+    // Parse user-supplied --time into a timestamp (this can fail) 
     let timestamp =
         cliutil::system_time_from_date_and_adjuster(time.as_str(), days_adjuster.as_deref())?;
     
-    // 如果格式错误（例如非日期输入）
-    // 返回包含"time"字符串的 Err
+    // If malformed (e.g., non-date input)
+    // this returns Err(...) containing the "time" string.
 
     ...
 
     let model = match advance.jump_sample_to(timestamp) {
         Some(m) => m,
-        // [!] 如果找不到匹配的快照样本
-        // `bail!` 直接返回 Err
+        // [!] If no matching snapshot sample found
+        // `bail!` simply returns Err.
         None => bail!(
             "No initial sample could be found!\n\
             You may have provided a time in the future or no data was recorded during the provided time. \
@@ -302,7 +302,7 @@ fn replay(
 
     ...
     
-	// 此处未触发日志——但该 Err 会被传递回 run()
+	// No log is triggered here - but that Err is passed back to run()
     view.run()
 }
 ```
@@ -315,41 +315,41 @@ fn replay(
 pub fn run<F>(
     init: init::InitToken,
     debug: bool,
-    below_config: &BelowConfig,	// 包含 log_dir → "/var/log/below"
+    below_config: &BelowConfig,	// holds log_dir  →  "/var/log/below"
     _service: Service,
-    command: F,					// 包装所选子命令的闭包
+    command: F,					// closure wrapping the chosen sub-command
 ) -> i32
 where
     F: FnOnce(init::InitToken, &BelowConfig, slog::Logger, Receiver<Error>) -> Result<()>,
 {
     let (err_sender, err_receiver) = channel();
     
-    // 构建完整日志文件路径 `/var/log/below/below.log`
+    // Builds the full log file path `/var/log/below/below.log`
     let log_path = below_config.log_dir.join("below.log");
     
-    // [1] 利用点 #1
-    // 以创建+追加模式打开日志文件，跟随任何符号链接
+    // [1] Exploit sink #1
+    // Open the logfile with create+append, following any symlink
     let logger = logging::setup(init, log_path, debug);
     setup_log_on_panic(logger.clone());
 
-    // 执行所选的子命令（例如 replay()）
-    // 返回的任何 Err 都会被捕获
+    // Execute the chosen sub-command (e.g.,  replay())
+    // Any Err returned will be caught below.
     let res = command(init, below_config, logger.clone(), err_receiver);
 
     match res {
-        Ok(_) => 0,                                    // 正常退出，无利用
-        Err(e) if e.is::<StopSignal>() => {            // 信号路径
-            error!(logger, "{:#}", e);                 // [2] 利用点 #2
+        Ok(_) => 0,                                    // normal exit, no exploit
+        Err(e) if e.is::<StopSignal>() => {            // signal path
+            error!(logger, "{:#}", e);                 // [2] Exploit sink #2
             0
         }
         Err(e) => {
             
             ...
             
-            // [3] 利用点 #3
-            // 将攻击者可影响的错误写入日志文件 ──
-            // 如果 replay() 无法解析 `--time`，`e` 包含该
-            // 可控字符串并以 root 权限写入 below.log
+            // [3] Exploit sink #3
+            // Write attacker-influenced error to logfile ──
+            // If replay() failed to parse `--time`, `e` contains that
+            // controlled string and is written as root to below.log.
             error!(
                 logger,
                 "\n----------------- Detected unclean exit ---------------------\n\
