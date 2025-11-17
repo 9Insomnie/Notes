@@ -20,10 +20,10 @@ nmap -sC -sV -vv -oA nmap 10.129.156.245
 
 **关键结果**
 
-| Port | Service | Version / Annotation |
-|------|---------|----------------------|
+| Port | Service | Version / Annotation                             |
+| ---- | ------- | ------------------------------------------------ |
 | 80   | http    | Microsoft IIS 10.0 → 重定向到 `http://eighteen.htb/` |
-| 1433 | mssql   | Microsoft SQL Server 2022 (16.0.1000.0 RC0+) |
+| 1433 | mssql   | Microsoft SQL Server 2022 (16.0.1000.0 RC0+)     |
 
 **域名**：`eighteen.htb`
 
