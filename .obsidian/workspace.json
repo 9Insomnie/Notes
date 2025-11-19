@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ba2238477043cca7",
+            "id": "945ec54e8679eecf",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "工作/标书/技术部分.md",
+                "file": "工作/教学/Web安全渗透测试课程大纲.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "技术部分"
+              "title": "Web安全渗透测试课程大纲"
             }
           }
         ]
@@ -184,15 +184,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c90c2b7a1e696c7b",
+  "active": "945ec54e8679eecf",
   "lastOpenFiles": [
+    "工作/标书/技术部分.md",
+    "工作/教学/Web安全渗透测试课程大纲.md",
+    "工作/教学",
     "渗透测试/免杀/DLL注入.md",
     "HTB/Voleur.md",
     "渗透测试/免杀",
     "HTB/Outbound.md",
     "渗透测试",
     "HTB/Eighteen.md",
-    "工作/标书/技术部分.md",
     "Outbound.md",
     "工作/标书",
     "工作",
