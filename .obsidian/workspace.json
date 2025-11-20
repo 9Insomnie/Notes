@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C2/Adaptix/如何修改植入物.md",
+                "file": "渗透测试/C2/Adaptix/如何修改植入物.md",
                 "mode": "source",
                 "source": false
               },
@@ -184,12 +184,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "1a858019d015fbd4",
+  "active": "c90c2b7a1e696c7b",
   "lastOpenFiles": [
     "C2/Adaptix/AdaptixC2生成物的特征分析.md",
-    "C2/Adaptix/如何修改植入物.md",
-    "C2/Adaptix",
-    "C2",
+    "渗透测试/C2/Adaptix/如何修改植入物.md",
+    "渗透测试/C2/Adaptix",
+    "渗透测试/C2",
     "工作/教学/Web安全渗透测试课程大纲.md",
     "工作/标书/技术部分.md",
     "工作/教学",
@@ -202,7 +202,7 @@
     "Outbound.md",
     "工作/标书",
     "工作",
-    "脚本/ft.sh.md",
+    "渗透测试/脚本/ft.sh.md",
     "备忘录/账号.md",
     "Pasted image 20251116204201.png",
     "Pasted image 20251116204800.png",
@@ -210,7 +210,7 @@
     "Pasted image 20251116205908.png",
     "Pasted image 20251116205249.png",
     "README.md",
-    "脚本",
+    "渗透测试/脚本",
     "conflict-files-obsidian-git.md",
     "HTB"
   ]
